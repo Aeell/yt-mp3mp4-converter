@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#ff0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="YT Convert">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="description" content="YouTube to MP3/MP4 Converter - Download videos free">
+    <title>YT Converter - YouTube to MP3/MP4</title>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/svg+xml" href="/static/icon-192.svg">
+    <link rel="apple-touch-icon" href="/static/icon-192.svg">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">YT Converter</a>
+            <nav>
+                <a href="#" id="navMp4">YouTube to MP4</a>
+                <a href="#" id="navPlaylist">Playlist</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h1>YouTube to MP3 & MP4 Converter</h1>
+            <p class="subtitle">Free, fast, no limits - convert and download in seconds</p>
+        </div>
+
+        <div class="converter-box">
+            <form id="convertForm">
+                <div class="input-group">
+                    <input type="text" id="videoUrl" placeholder="Paste YouTube link here..." required>
+                    <button type="submit" id="convertBtn">Convert</button>
+                </div>
+
+                <div class="video-info" id="videoInfo" style="display:none">
+                    <div class="info-row">
+                        <span class="info-label">Title:</span>
+                        <span class="info-value" id="videoTitle">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value" id="videoDuration">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Type:</span>
+                        <span class="info-value" id="videoType">-</span>
+                    </div>
+                </div>
+
+                <div class="options">
+                    <div class="format-select">
+                        <label>Format:</label>
+                        <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                        <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                    </div>
+
+                    <div class="quality-select">
+                        <label>Quality:</label>
+                        <select id="quality">
+                            <optgroup label="MP3 Audio" id="mp3Quality">
+                                <option value="128kbps">128 kbps</option>
+                                <option value="192kbps">192 kbps</option>
+                                <option value="320kbps" selected>320 kbps</option>
+                            </optgroup>
+                            <optgroup label="MP4 Video" id="mp4Quality" style="display:none">
+                                <option value="360p">360p</option>
+                                <option value="720p">720p HD</option>
+                                <option value="1080p" selected>1080p Full HD</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </form>
+
+            <div class="progress-container" id="progressContainer" style="display:none">
+                <div class="progress-info">
+                    <span id="progressStatus">Preparing...</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p class="progress-text" id="progressText"></p>
+            </div>
+
+            <div class="result" id="result" style="display:none">
+                <p class="success-message" id="successMessage">Conversion complete!</p>
+                <a href="#" class="download-btn" id="downloadLink">Download Now</a>
+            </div>
+
+            <div class="error-message" id="error" style="display:none"></div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>Fast Conversion</h3>
+                <p>Convert YouTube videos in seconds with our fast servers</p>
+            </div>
+            <div class="feature">
+                <h3>High Quality</h3>
+                <p>MP3 up to 320kbps, MP4 up to 1080p Full HD</p>
+            </div>
+            <div class="feature">
+                <h3>No Limits</h3>
+                <p>Unlimited conversions, no registration required</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 YT Converter | Free YouTube to MP3/MP4 Converter</p>
+        <p class="disclaimer">For personal use only. Please respect copyright.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/static/sw.js')
+        .then(reg => console.log('SW registered'))
+        .catch(err => console.log('SW error:', err));
+    }
+    </script>
+</body>
+</html>
