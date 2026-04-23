@@ -32,3 +32,12 @@ DELETE /api/cleanup — Clean temp files
 ## Notes
 - FFmpeg binaries are NOT included (too large for Git). Ensure FFmpeg is installed and in PATH.
 - yt-dlp.exe is bundled for convenience.
+
+## Test Results
+After fixes applied:
+- File naming uses YouTube video title (sanitized)
+- MP3 quality 320kbps works correctly
+- MP4 1080p conversion succeeds (no Task not found error)
+- Progress shows real yt-dlp output (5%→85% download, 90%→100% processing)
+- Quality dropdown matches selected format
+- Playlist detection and conversion supported
